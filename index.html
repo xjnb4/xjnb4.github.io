@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>虚假导航</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+        
+        #particles-js {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+        
+        .container {
+            max-width: 900px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 20px;
+            z-index: 1;
+        }
+        
+        .header {
+            margin-bottom: 30px;
+            animation: fadeIn 1s ease-out;
+            text-align: center;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+        }
+        
+        .title {
+            font-size: 4.5rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+            background: linear-gradient(45deg, #ffd89b, #19547b);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            letter-spacing: 2px;
+        }
+        
+        .subtitle {
+            font-size: 1.3rem;
+            color: #e0e0ff;
+            margin-bottom: 10px;
+        }
+        
+        .buttons-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+        
+        .nav-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 25px;
+            transition: all 0.4s ease;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            height: 100%;
+        }
+        
+        .nav-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            background: rgba(255, 255, 255, 0.15);
+        }
+        
+        .card-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: #ffd89b;
+            background: rgba(0, 0, 0, 0.2);
+            width: 70px;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+        
+        .card-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .card-desc {
+            font-size: 0.9rem;
+            color: #d0d0ff;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+        
+        .nav-button {
+            background: linear-gradient(135deg, #ffd89b, #19547b);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            text-decoration: none;
+            display: block;
+            text-align: center;
+        }
+        
+        .nav-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .footer {
+            margin-top: 60px;
+            color: #b0b0ff;
+            font-size: 0.9rem;
+            padding: 20px;
+            width: 100%;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+        }
+        
+        .copyright {
+            font-size: 0.8rem;
+            color: #a0a0e0;
+            margin-top: 5px;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .title {
+                font-size: 3rem;
+            }
+            
+            .buttons-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-card {
+                padding: 20px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .title {
+                font-size: 2.5rem;
+            }
+            
+            .container {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="particles-js"></div>
+    
+    <div class="container">
+        <div class="header">
+            <h1 class="title">虚假导航</h1>
+            <p class="subtitle">虚假永久导航页: xjnb4.github.io</p>
+        </div>
+        
+        <div class="buttons-container">
+            <div class="nav-card">
+                <div class="card-icon">
+                    <i class="fas fa-broadcast-tower"></i>
+                </div>
+                <h3 class="card-title">虚假主频道</h3>
+                <p class="card-desc">获取最新虚假资讯和通知</p>
+                <a href="https://t.me/xjfdggpx" class="nav-button" target="_blank">访问频道</a>
+            </div>
+            
+            <div class="nav-card">
+                <div class="card-icon">
+                    <i class="fas fa-comment-alt"></i>
+                </div>
+                <h3 class="card-title">虚假反馈频道</h3>
+                <p class="card-desc">提交您的虚假反馈和建议</p>
+                <a href="https://t.me/qpqpfhqqqqq" class="nav-button" target="_blank">提交反馈</a>
+            </div>
+            
+            <div class="nav-card">
+                <div class="card-icon">
+                    <i class="fas fa-music"></i>
+                </div>
+                <h3 class="card-title">虚假音乐库</h3>
+                <p class="card-desc">欣赏精选虚假音乐作品</p>
+                <a href="https://t.me/xjnd888666" class="nav-button" target="_blank">进入音乐库</a>
+            </div>
+            
+            <div class="nav-card">
+                <div class="card-icon">
+                    <i class="fas fa-credit-card"></i>
+                </div>
+                <h3 class="card-title">虚假卡网</h3>
+                <p class="card-desc">获取各类虚假卡片资源</p>
+                <a href="https://www.vmcg.cn/shop/xjnb678bot" class="nav-button" target="_blank">访问卡网</a>
+            </div>
+            
+            <div class="nav-card">
+                <div class="card-icon">
+                    <i class="fas fa-user-circle"></i>
+                </div>
+                <h3 class="card-title">虚假大号</h3>
+                <p class="card-desc">关注虚假大号获取更多内容</p>
+                <a href="https://t.me/qwqxjovo" class="nav-button" target="_blank">关注大号</a>
+            </div>
+            
+            <div class="nav-card">
+                <div class="card-icon">
+                    <i class="fas fa-user"></i>
+                </div>
+                <h3 class="card-title">虚假小号</h3>
+                <p class="card-desc">关注虚假小号获取日常更新</p>
+                <a href="t.me/falseadvertising" class="nav-button" target="_blank">关注小号</a>
+            </div>
+            
+            <div class="nav-card">
+    <div class="card-icon">
+        <i class="fas fa-robot"></i>
+    </div>
+    <h3 class="card-title">虚假双向机器人</h3>
+    <p class="card-desc">与智能虚假机器人互动</p>
+    <a href="https://t.me/xjnb678bot" class="nav-button" target="_blank">启动机器人</a>
+</div>
+        </div>
+    </div>
+    
+    <div class="footer">
+        <p>虚假导航平台 - 为您提供全方位虚假信息服务</p>
+        <p class="copyright">版权所有 © 2023 虚假导航 | 保留所有权利</p>
+    </div>
+    
+    <!-- 引入粒子效果库 -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+        // 初始化粒子背景
+        particlesJS('particles-js', {
+            particles: {
+                number: { value: 80, density: { enable: true, value_area: 800 } },
+                color: { value: "#ffffff" },
+                shape: { type: "circle" },
+                opacity: { value: 0.5, random: true },
+                size: { value: 3, random: true },
+                line_linked: {
+                    enable: true,
+                    distance: 150,
+                    color: "#ffffff",
+                    opacity: 0.4,
+                    width: 1
+                },
+                move: {
+                    enable: true,
+                    speed: 2,
+                    direction: "none",
+                    random: true,
+                    straight: false,
+                    out_mode: "out",
+                    bounce: false
+                }
+            },
+            interactivity: {
+                detect_on: "canvas",
+                events: {
+                    onhover: { enable: true, mode: "repulse" },
+                    onclick: { enable: true, mode: "push" },
+                    resize: true
+                }
+            },
+            retina_detect: true
+        });
+        
+        // 添加按钮点击动画效果
+        document.querySelectorAll('.nav-button').forEach(button => {
+            button.addEventListener('click', function(e) {
+                // 创建涟漪效果
+                const rect = this.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                const ripple = document.createElement('span');
+                ripple.classList.add('ripple-effect');
+                ripple.style.left = `${x}px`;
+                ripple.style.top = `${y}px`;
+                
+                this.appendChild(ripple);
+                
+                setTimeout(() => {
+                    ripple.remove();
+                }, 600);
+            });
+        });
+        
+        // 添加涟漪效果的CSS
+        const style = document.createElement('style');
+        style.textContent = `
+            .ripple-effect {
+                position: absolute;
+                border-radius: 50%;
+                background: rgba(255, 255, 255, 0.6);
+                transform: scale(0);
+                animation: ripple 0.6s linear;
+                width: 100px;
+                height: 100px;
+                margin-top: -50px;
+                margin-left: -50px;
+                pointer-events: none;
+            }
+            
+            @keyframes ripple {
+                to {
+                    transform: scale(2.5);
+                    opacity: 0;
+                }
+            }
+            
+            .nav-button {
+                position: relative;
+                overflow: hidden;
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
